@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "78cfa55d3e44af2f2ded0673bf267293",
+    "hash": "b7e870a818050955335954ec2d6e871e",
     "packages": [
         {
             "name": "angmarian/pivotal-tracker-api",
