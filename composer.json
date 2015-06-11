@@ -1,0 +1,23 @@
+{
+    "name": "econtech/testfairy-pivotal",
+    "authors": [
+        {
+            "name": "Paul Drozd",
+            "email": "paul.drozd@eco-n-tech.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/angmarian/pivotal-tracker-api"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "angmarian/pivotal-tracker-api": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.7.*@stable",
+        "fzaninotto/Faker": "*@stable"
+    }
+}
