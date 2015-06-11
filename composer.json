@@ -14,10 +14,14 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=5.4.0",
         "angmarian/pivotal-tracker-api": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.7.*@stable",
+        "phpunit/phpunit": "*@stable",
         "fzaninotto/Faker": "*@stable"
+    },
+    "autoload": {
+        "psr-4": {"": "src/"}
     }
 }

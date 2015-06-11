@@ -1,8 +1,5 @@
 <?php
 
-include_once __DIR__ . "/../src/BugReporter.php";
-include_once __DIR__ . "/../src/PivotalReporter.php";
-
 class reporterTest extends PHPUnit_Framework_TestCase
 {
 
