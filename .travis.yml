@@ -9,4 +9,4 @@ before_script:
   - composer dump-autoload
   - cat ./vendor/composer/autoload_psr4.php
 
-script: phpunit -c phpunit.xml tests/
+script: ./vendor/bin/phpunit -c phpunit.xml tests/
