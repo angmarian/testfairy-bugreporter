@@ -1,4 +1,4 @@
-<?
+<?php
 
 use PivotalTrackerV5\Client as PivotalClient;
 
