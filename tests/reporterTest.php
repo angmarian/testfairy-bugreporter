@@ -1,7 +1,5 @@
 <?php
 
-require_once "./vendor/autoload.php";
-
 class reporterTest extends PHPUnit_Framework_TestCase
 {
 
