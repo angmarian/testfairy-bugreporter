@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/angmarian/pivotal-tracker-api.git",
-                "reference": "f063c2597ec96fc4ba753f6b13ea072fca87c8aa"
+                "reference": "7fcfe618f8fb5352158a8adcdef870676824549f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/angmarian/pivotal-tracker-api/zipball/f063c2597ec96fc4ba753f6b13ea072fca87c8aa",
-                "reference": "f063c2597ec96fc4ba753f6b13ea072fca87c8aa",
+                "url": "https://api.github.com/repos/angmarian/pivotal-tracker-api/zipball/7fcfe618f8fb5352158a8adcdef870676824549f",
+                "reference": "7fcfe618f8fb5352158a8adcdef870676824549f",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
             "support": {
                 "source": "https://github.com/angmarian/pivotal-tracker-api/tree/master"
             },
-            "time": "2015-06-10 09:53:06"
+            "time": "2015-06-11 13:54:25"
         }
     ],
     "packages-dev": [

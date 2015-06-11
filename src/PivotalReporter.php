@@ -7,10 +7,10 @@ class PivotalReporter implements BugReporter
 
     protected $client;
 
-    public function __construct($username, $password, $projectName = null)
+    public function __construct($token, $projectName = null)
     {
 
-        $this->client = new PivotalClient($username, $password);
+        $this->client = new PivotalClient($token);
 
         if ($projectName) {
 

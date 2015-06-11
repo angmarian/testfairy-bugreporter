@@ -3,9 +3,8 @@
 class reporterTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $username = "gil@testfairy.com";
-    protected $password = "1234abcd";
-    protected $project  = "My Sample Project";
+    protected $token   = "98b5e75ff2925166b61d7464d964f9b5";
+    protected $project = "My Sample Project";
 
 
     public function testReporter()
@@ -15,7 +14,7 @@ class reporterTest extends PHPUnit_Framework_TestCase
 
         // testing connection
 
-        $reporter = new PivotalReporter($this->username, $this->password, $this->project);
+        $reporter = new PivotalReporter($this->token, $this->project);
 
         $this->assertNotFalse($reporter);
 
