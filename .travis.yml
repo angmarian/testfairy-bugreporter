@@ -9,4 +9,4 @@ before_script:
   - composer install
   - composer dump-autoload
 
-script: phpunit tests/
+script: phpunit -c phpunit.xml tests/
