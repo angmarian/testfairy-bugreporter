@@ -7,5 +7,6 @@ before_script:
   - composer self-update
   - composer install
   - composer dump-autoload
+  - ls -l ./
 
 script: phpunit tests/
