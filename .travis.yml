@@ -2,11 +2,11 @@ language: php
 
 php:
   - 5.5
-  - 5.6
 
 before_script:
   - composer self-update
   - composer install
   - composer dump-autoload
+  - cat ./vendor/composer/autoload_psr4.php
 
 script: phpunit -c phpunit.xml tests/
