@@ -27,9 +27,9 @@ class PivotalReporter implements BugReporter
      * @return array
      */
     public function getTypes() {
-        return [
+        return array(
             "feature", "bug", "chore", "release"
-        ];
+        );
     }
 
     /**
