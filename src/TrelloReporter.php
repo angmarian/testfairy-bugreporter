@@ -168,6 +168,12 @@ class TrelloReporter implements BugReporter
         }, $this->client->api('member')->boards()->all('me'));
     }
 
+    public function getLists() {
+        return array_map(function ($list) {
+            return $list->getName();
+        }, $this->manager->getBoard($this->boardId)->getLists());
+    }
+
     protected function getProjectIdByName($projectName) {
         foreach ($this->client->api('member')->boards()->all('me') as $project) {
             if ($project['name'] == $projectName) {

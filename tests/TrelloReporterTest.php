@@ -24,6 +24,11 @@ class TrelloReporterTest extends PHPUnit_Framework_TestCase
 
         $this->assertNotFalse($reporter);
 
+        // testing lists
+
+        $lists = $reporter->getLists();
+
+        $this->assertInternalType('array', $lists);
 
         // testing issue creation
 
