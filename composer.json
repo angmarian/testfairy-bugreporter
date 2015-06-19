@@ -16,7 +16,8 @@
     "require": {
         "php": ">=5.3.0",
         "angmarian/pivotal-tracker-api": "dev-master",
-        "cdaguerre/php-trello-api": "dev-master"
+        "cdaguerre/php-trello-api": "dev-master",
+        "ajimix/asana-api-php-class": "dev-master"
     },
     "require-dev": {
         "symfony/yaml": "~2.1",

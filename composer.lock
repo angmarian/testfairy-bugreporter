@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "603d8e6763f9e4e52c14b68c620b40ba",
+    "hash": "1405cbb84c647cb0872748d8a36745a5",
     "packages": [
+        {
+            "name": "ajimix/asana-api-php-class",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ajimix/asana-api-php-class.git",
+                "reference": "7e10907b62c614397334c4ab5c6e49a8cb071f05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ajimix/asana-api-php-class/zipball/7e10907b62c614397334c4ab5c6e49a8cb071f05",
+                "reference": "7e10907b62c614397334c4ab5c6e49a8cb071f05",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "asana.php",
+                    "asana-oauth.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache License Version 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Adria Jimenez",
+                    "email": "ajimix@gmail.com",
+                    "homepage": "http://www.ajimix.net"
+                }
+            ],
+            "description": "A PHP class that acts as wrapper for Asana API. Lets make things easy! :)",
+            "homepage": "https://github.com/ajimix/asana-api-php-class",
+            "keywords": [
+                "api",
+                "asana"
+            ],
+            "time": "2015-06-15 07:10:33"
+        },
         {
             "name": "angmarian/pivotal-tracker-api",
             "version": "dev-master",
@@ -76,7 +119,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cdaguerre/php-trello-api/zipball/07ac500d11c2efbc6002ed3c65d04e19862b9235",
+                "url": "https://api.github.com/repos/cdaguerre/php-trello-api/zipball/b1205d9ac9b24df03c2db5aa9a8c7418d28c0b78",
                 "reference": "07ac500d11c2efbc6002ed3c65d04e19862b9235",
                 "shasum": ""
             },
@@ -1279,6 +1322,7 @@
     "stability-flags": {
         "angmarian/pivotal-tracker-api": 20,
         "cdaguerre/php-trello-api": 20,
+        "ajimix/asana-api-php-class": 20,
         "phpunit/phpunit": 0,
         "fzaninotto/faker": 0
     },
