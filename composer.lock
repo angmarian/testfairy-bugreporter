@@ -115,12 +115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/angmarian/youtrack.git",
-                "reference": "f24468c03774c8badb33fe7a17d582c2763060f7"
+                "reference": "5b0d5554fc225dfb33c2bce6ac852ae6afc42248"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/angmarian/youtrack/zipball/f24468c03774c8badb33fe7a17d582c2763060f7",
-                "reference": "f24468c03774c8badb33fe7a17d582c2763060f7",
+                "url": "https://api.github.com/repos/angmarian/youtrack/zipball/5b0d5554fc225dfb33c2bce6ac852ae6afc42248",
+                "reference": "5b0d5554fc225dfb33c2bce6ac852ae6afc42248",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
             "support": {
                 "source": "https://github.com/angmarian/youtrack/tree/master"
             },
-            "time": "2015-06-24 12:20:11"
+            "time": "2015-06-24 12:26:35"
         },
         {
             "name": "cdaguerre/php-trello-api",
