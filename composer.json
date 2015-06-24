@@ -10,12 +10,17 @@
         {
             "type": "vcs",
             "url": "https://github.com/angmarian/pivotal-tracker-api"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/angmarian/youtrack"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0",
         "angmarian/pivotal-tracker-api": "dev-master",
+        "angmarian/youtrack-client": "dev-master",
         "cdaguerre/php-trello-api": "dev-master",
         "ajimix/asana-api-php-class": "dev-master"
     },
