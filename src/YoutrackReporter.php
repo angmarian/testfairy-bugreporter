@@ -84,7 +84,7 @@ class YoutrackReporter implements BugReporter
     {
         return array_map(function ($issue) {
             return $issue->id;
-        }, $this->client->getIssues($this->projectId, null, null, null));
+        }, $this->client->getIssues($this->projectId, null, null, 99999));
     }
 
     /**
