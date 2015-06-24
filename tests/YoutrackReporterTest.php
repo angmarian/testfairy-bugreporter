@@ -11,7 +11,7 @@ class YoutrackReporterTest extends PHPUnit_Framework_TestCase
 
     protected $url      = 'https://angmarian.myjetbrains.com/youtrack';
     protected $username = 'root';
-    protected $password = '25179long';
+    protected $password = '123456';
 
     public function testReporter()
     {
