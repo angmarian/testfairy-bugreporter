@@ -1,11 +1,12 @@
 <?php
 
+namespace Econtech\TestFairy;
+
 use YouTrack\Connection as YouTrackConnection;
 
-class YoutrackReporter implements BugReporter
+class YoutrackReporter implements \BugReporter
 {
 
-    protected $asana;
     protected $projectName;
     protected $projectId;
     protected $user;
@@ -17,7 +18,12 @@ class YoutrackReporter implements BugReporter
 
         $this->baseUrl = $baseUrl;
 
-        $this->client = new YouTrackConnection($baseUrl, $username, $password);
+        try {
+            $this->client = new YouTrackConnection($baseUrl, $username, $password);
+        } catch (\YouTrack\IncorrectLoginException $e) {
+            error_log($e->getMessage());
+            throw new \Exception($e->getMessage());
+        }
 
         if ($projectName) {
             $this->projectName = $projectName;
@@ -82,9 +88,8 @@ class YoutrackReporter implements BugReporter
      */
     public function getIssues()
     {
-        return array_map(function ($issue) {
-            return $issue->id;
-        }, $this->client->getIssues($this->projectId, null, null, 99999));
+        $issues = $this->client->getIssues($this->projectId, null, null, 99999);
+        return array_map(array($this, 'getIssueId'), $issues);
     }
 
     /**
@@ -143,11 +148,8 @@ class YoutrackReporter implements BugReporter
      */
     public function getProjects()
     {
-
-        return array_map(function ($project) {
-            return $project->name;
-        }, $this->client->getAccessibleProjects());
-
+        $projects = $this->client->getAccessibleProjects();
+        return array_map(array($this, 'getProjectName'), $projects);
     }
 
     protected function getProjectIdByName($projectName)
@@ -157,6 +159,20 @@ class YoutrackReporter implements BugReporter
                 return $project->getShortName();
             }
         }
+
+        error_log("Project not found.");
+        throw new \Exception("Project not found.");
+
         return false;
+    }
+
+    private static function getProjectName($project)
+    {
+        return $project->name;
+    }
+
+    private static function getIssueId($issue)
+    {
+        return $issue->id;
     }
 }

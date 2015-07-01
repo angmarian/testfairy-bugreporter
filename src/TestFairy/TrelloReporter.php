@@ -1,10 +1,12 @@
 <?php
 
+namespace Econtech\TestFairy;
+
 use Trello\Client;
 use Trello\Manager;
 use Trello\Service;
 
-class TrelloReporter implements BugReporter
+class TrelloReporter implements \BugReporter
 {
 
     protected $client;
@@ -24,13 +26,18 @@ class TrelloReporter implements BugReporter
 
         $this->client = new Client();
 
-        $this->client->authenticate($key, $token, Client::AUTH_URL_CLIENT_ID);
+        try {
+            $this->client->authenticate($key, $token, Client::AUTH_URL_CLIENT_ID);
 
-        $this->manager = new Manager($this->client);
+            $this->manager = new Manager($this->client);
 
-        if ($boardName) {
-            $this->boardName = $boardName;
-            $this->boardId   = $this->getProjectIdByName($boardName);
+            if ($boardName) {
+                $this->boardName = $boardName;
+                $this->boardId   = $this->getProjectIdByName($boardName);
+            }
+        } catch (\Trello\Exception\RuntimeException $e) {
+            error_log($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
 
     }
@@ -45,7 +52,8 @@ class TrelloReporter implements BugReporter
      *
      * @return array
      */
-    public function getTypes() {
+    public function getTypes()
+    {
         return array('card');
     }
 
@@ -56,7 +64,8 @@ class TrelloReporter implements BugReporter
      * @param $description
      * @return array
      */
-    public function createIssue($title, $body) {
+    public function createIssue($title, $body)
+    {
 
         $lists = $this->manager->getBoard($this->boardId)->getLists();
 
@@ -86,7 +95,8 @@ class TrelloReporter implements BugReporter
      * @param $description
      * @return boolean
      */
-    public function editIssue($key, $id, $body) {
+    public function editIssue($key, $id, $body)
+    {
         $this->manager->getCard($id)
              ->setDescription($body)
              ->save();
@@ -98,16 +108,16 @@ class TrelloReporter implements BugReporter
      *
      * @return array
      */
-    public function getIssues() {
+    public function getIssues()
+    {
         $issues = array();
 
         foreach ($this->manager->getBoard($this->boardId)->getLists() as $list) {
             $issues = array_merge($issues, $list->getCards());
         }
 
-        return array_map(function ($issue) {
-            return $issue->getId();
-        }, $issues);
+        return array_map(array($this, 'getIssueId'), $issues);
+
     }
 
     /**
@@ -116,7 +126,8 @@ class TrelloReporter implements BugReporter
      * @param IssueWrapper $issue
      * @return string
      */
-    public function getIssueEndpointUrl(IssueWrapper $issue) {
+    public function getIssueEndpointUrl(IssueWrapper $issue)
+    {
 
     }
 
@@ -127,7 +138,8 @@ class TrelloReporter implements BugReporter
      * @param $id
      * @return string
      */
-    public function getStatus($key, $id) {
+    public function getStatus($key, $id)
+    {
 
         $issue = $this->manager->getCard($id);
 
@@ -142,7 +154,8 @@ class TrelloReporter implements BugReporter
      * @param $id
      * @return string
      */
-    public function getSummary($key, $id) {
+    public function getSummary($key, $id)
+    {
         return $this->manager->getCard($id)->getData();
     }
 
@@ -153,7 +166,8 @@ class TrelloReporter implements BugReporter
      * @param $id
      * @return string
      */
-    public function getDescription($key, $id) {
+    public function getDescription($key, $id)
+    {
         return $this->manager->getCard($id)->getDescription();
     }
 
@@ -162,25 +176,50 @@ class TrelloReporter implements BugReporter
      *
      * @return array
      */
-    public function getProjects() {
-        return array_map(function ($board) {
-            return $board['name'];
-        }, $this->client->api('member')->boards()->all('me'));
+    public function getProjects()
+    {
+        $boards = $this->client->api('member')->boards()->all('me');
+
+        if (empty($boards)) {
+            error_log("No projects found.");
+            throw new \Exception("No projects found.");
+        }
+
+        return array_map(array($this, 'getProjectName'), $boards);
     }
 
-    public function getLists() {
-        return array_map(function ($list) {
-            return $list->getName();
-        }, $this->manager->getBoard($this->boardId)->getLists());
+    public function getLists()
+    {
+        $lists = $this->manager->getBoard($this->boardId)->getLists();
+        return array_map(array($this, 'getListName'), $lists);
     }
 
-    protected function getProjectIdByName($projectName) {
+    protected function getProjectIdByName($projectName)
+    {
         foreach ($this->client->api('member')->boards()->all('me') as $project) {
             if ($project['name'] == $projectName) {
                 return $project['id'];
             }
         }
+
+        error_log("Project not found.");
+        throw new \Exception("Project not found.");
+
         return false;
     }
 
+    private static function getProjectName($project)
+    {
+        return $project['name'];
+    }
+
+    private static function getIssueId($issue)
+    {
+        return $issue->getId();
+    }
+
+    private static function getListName($list)
+    {
+        return $list->getName();
+    }
 }

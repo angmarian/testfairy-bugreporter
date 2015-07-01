@@ -1,7 +1,8 @@
 <?php
 
+namespace Econtech\TestFairy;
 
-class AsanaReporter implements BugReporter
+class AsanaReporter implements \BugReporter
 {
 
     protected $key;
@@ -16,11 +17,23 @@ class AsanaReporter implements BugReporter
 
         $this->key = $key;
 
-        $this->asana = new Asana(array(
+        $this->asana = new \Asana(array(
             'apiKey' => $key,
         ));
 
-        $this->user = json_decode($this->asana->getUserInfo())->data;
+        if (!$this->asana) {
+            error_log("Cannot connect to ASANA.");
+            throw new \Exception("Cannot connect to ASANA.");
+        }
+
+        $userData = $this->asana->getUserInfo();
+
+        if (!$userData) {
+            error_log("Cannot fetch user data. Maybe apiKey is wrong?");
+            throw new \Exception("Cannot fetch user data. Maybe apiKey is wrong?");
+        }
+
+        $this->user = json_decode($userData)->data;
 
         if ($projectName) {
             $this->projectName = $projectName;
@@ -49,15 +62,19 @@ class AsanaReporter implements BugReporter
      */
     public function createIssue($title, $body)
     {
-        $issue = json_decode($this->asana->createTask(array(
+        $task = $this->asana->createTask(array(
            'projects'  => "{$this->projectId}",
            'name'      => $title,
            'notes'     => $body,
            'workspace' => "{$this->workspaceId}",
            'assignee'  => "{$this->user->id}",
-        )), true);
+        ));
 
-        if (!empty($issue['data'])) { return $issue['data']; }
+        $issue = json_decode($task, true);
+
+        if (!empty($issue['data'])) {
+            return $issue['data'];
+        }
 
         return false;
     }
@@ -72,9 +89,11 @@ class AsanaReporter implements BugReporter
      */
     public function editIssue($key, $id, $body)
     {
-        return json_decode($this->asana->updateTask($id, array(
+        $task = $this->asana->updateTask($id, array(
             'notes' => $body,
-        )))->data;
+        ));
+
+        return json_decode($task)->data;
     }
 
     /**
@@ -84,9 +103,10 @@ class AsanaReporter implements BugReporter
      */
     public function getIssues()
     {
-        return array_map(function ($issue) {
-            return $issue->id;
-        }, json_decode($this->asana->getTasksByFilter(array('project' => $this->projectId)))->data);
+        $issues = $this->asana->getTasksByFilter(array('project' => $this->projectId));
+        $data   = json_decode($issues)->data;
+
+        return array_map(array($this, "getIssueId"), $data);
     }
 
     /**
@@ -109,7 +129,8 @@ class AsanaReporter implements BugReporter
      */
     public function getStatus($key, $id)
     {
-        $issue = json_decode($this->asana->getTask($id))->data;
+        $task  = $this->asana->getTask($id);
+        $issue = json_decode($task)->data;
 
         if ($issue->completed) {
             return 'Complete';
@@ -127,8 +148,10 @@ class AsanaReporter implements BugReporter
      */
     public function getSummary($key, $id)
     {
-        $response = json_decode($this->asana->getTask($id), true);
-        return $response['data'];
+        $task  = $this->asana->getTask($id);
+        $issue = json_decode($task, true);
+
+        return $issue['data'];
     }
 
     /**
@@ -141,6 +164,7 @@ class AsanaReporter implements BugReporter
     public function getDescription($key, $id)
     {
         $issue = $this->getSummary(null, $id);
+
         return $issue['notes'];
     }
 
@@ -151,19 +175,41 @@ class AsanaReporter implements BugReporter
      */
     public function getProjects()
     {
-        return array_map(function ($project) {
-            return $project->name;
-        }, json_decode($this->asana->getProjects())->data);
+        $projects = $this->asana->getProjects();
+        $data     = json_decode($projects)->data;
+
+        if (empty($data)) {
+            error_log("No projects found.");
+            throw new \Exception("No projects found.");
+        }
+
+        return array_map(array($this, "getProjectName"), $data);
     }
 
     protected function getProjectIdByName($projectName)
     {
-        foreach (json_decode($this->asana->getProjects())->data as $project) {
+        $projects = $this->asana->getProjects();
+        $data     = json_decode($projects)->data;
+
+        foreach ($data as $project) {
             if ($project->name == $projectName) {
                 return $project->id;
             }
         }
+
+        error_log('Cannot found project with name "' . $projectName . '".');
+        throw new \Exception('Cannot found project with name "' . $projectName . '".');
+
         return false;
     }
 
+    private static function getProjectName($project)
+    {
+        return $project->name;
+    }
+
+    private static function getIssueId($issue)
+    {
+        return $issue->id;
+    }
 }

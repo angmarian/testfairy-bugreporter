@@ -1,6 +1,10 @@
 <?php
 
-class YoutrackReporterTest extends PHPUnit_Framework_TestCase
+namespace Econtech\TestFairy\Tests;
+
+use Econtech\TestFairy\YoutrackReporter;
+
+class YoutrackReporterTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $project  = 'Test project 1';
@@ -16,7 +20,7 @@ class YoutrackReporterTest extends PHPUnit_Framework_TestCase
     public function testReporter()
     {
 
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
         $reporter = new YoutrackReporter($this->url, $this->username, $this->password, $this->project);
 
@@ -55,7 +59,9 @@ class YoutrackReporterTest extends PHPUnit_Framework_TestCase
 
         $found = false;
         foreach ($issues as $issue) {
-            if ($issue == $issueId) $found = true;
+            if ($issue == $issueId) {
+                $found = true;
+            }
         }
 
         $this->assertTrue($found);
@@ -92,5 +98,4 @@ class YoutrackReporterTest extends PHPUnit_Framework_TestCase
         $this->assertNotEquals($issue['description'], $issueBody);
 
     }
-
 }

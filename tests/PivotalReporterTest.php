@@ -1,6 +1,10 @@
 <?php
 
-class reporterTest extends PHPUnit_Framework_TestCase
+namespace Econtech\TestFairy\Tests;
+
+use Econtech\TestFairy\PivotalReporter;
+
+class PivotalReporterTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $token   = "98b5e75ff2925166b61d7464d964f9b5";
@@ -10,7 +14,7 @@ class reporterTest extends PHPUnit_Framework_TestCase
     public function testReporter()
     {
 
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
         // testing connection
 
@@ -43,7 +47,9 @@ class reporterTest extends PHPUnit_Framework_TestCase
 
         $found = false;
         foreach ($issues as $issue) {
-            if ($issue == $issueId) $found = true;
+            if ($issue == $issueId) {
+                $found = true;
+            }
         }
 
         $this->assertTrue($found);
@@ -77,5 +83,4 @@ class reporterTest extends PHPUnit_Framework_TestCase
         $this->assertNotEquals($issue['description'], $issueBody);
 
     }
-
 }

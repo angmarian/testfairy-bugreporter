@@ -1,6 +1,10 @@
 <?php
 
-class AsanaReporterTest extends PHPUnit_Framework_TestCase
+namespace Econtech\TestFairy\Tests;
+
+use Econtech\TestFairy\AsanaReporter;
+
+class AsanaReporterTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $key      = 'aSLKuz4Y.nqs9uFzL3C3mYqyM0ZlmFIn';
@@ -10,7 +14,7 @@ class AsanaReporterTest extends PHPUnit_Framework_TestCase
     public function testReporter()
     {
 
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
         $reporter = new AsanaReporter($this->key, $this->project);
 
@@ -49,7 +53,9 @@ class AsanaReporterTest extends PHPUnit_Framework_TestCase
 
         $found = false;
         foreach ($issues as $issue) {
-            if ($issue == $issueId) $found = true;
+            if ($issue == $issueId) {
+                $found = true;
+            }
         }
 
         $this->assertTrue($found);
@@ -86,5 +92,4 @@ class AsanaReporterTest extends PHPUnit_Framework_TestCase
         $this->assertNotEquals($issue['notes'], $issueBody);
 
     }
-
 }

@@ -30,6 +30,10 @@
         "fzaninotto/Faker": "*@stable"
     },
     "autoload": {
-        "psr-0": {"": "src/"}
+        "psr-4": {
+            "Econtech\\TestFairy\\": "src/TestFairy/",
+            "Econtech\\TestFairy\\Tests\\": "tests/",
+            "": "src/"
+        }
     }
 }

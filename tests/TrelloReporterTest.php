@@ -1,6 +1,10 @@
 <?php
 
-class TrelloReporterTest extends PHPUnit_Framework_TestCase
+namespace Econtech\TestFairy\Tests;
+
+use Econtech\TestFairy\TrelloReporter;
+
+class TrelloReporterTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $key      = 'a287836405f73a08dc05c7564add7323';
@@ -11,10 +15,14 @@ class TrelloReporterTest extends PHPUnit_Framework_TestCase
     public function testReporter()
     {
 
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
-        $reporter = new TrelloReporter($this->key);
+        $reporter = new TrelloReporter($this->key, $this->token);
 
+        $projects = $reporter->getProjects();
+
+        $this->assertInternalType('array', $projects);
+        $this->assertNotEmpty($projects);
 
         // method to get url, that must be sent to user to generate token for him
 
@@ -62,7 +70,9 @@ class TrelloReporterTest extends PHPUnit_Framework_TestCase
 
         $found = false;
         foreach ($issues as $issue) {
-            if ($issue == $issueId) $found = true;
+            if ($issue == $issueId) {
+                $found = true;
+            }
         }
 
         $this->assertTrue($found);
@@ -99,5 +109,4 @@ class TrelloReporterTest extends PHPUnit_Framework_TestCase
         $this->assertNotEquals($issue['desc'], $issueBody);
 
     }
-
 }

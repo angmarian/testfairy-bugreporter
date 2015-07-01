@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1d403d2951209aa1485b8683a28bd8dd",
+    "hash": "01fded523f908f3dd920d02446cecac1",
     "packages": [
         {
             "name": "ajimix/asana-api-php-class",
@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/angmarian/pivotal-tracker-api.git",
-                "reference": "c22963bfee64cac2822a379583cd48d5d1cfa7fe"
+                "reference": "37b5489fdc13f33578d1f79a5870d9d276f7cc87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/angmarian/pivotal-tracker-api/zipball/c22963bfee64cac2822a379583cd48d5d1cfa7fe",
-                "reference": "c22963bfee64cac2822a379583cd48d5d1cfa7fe",
+                "url": "https://api.github.com/repos/angmarian/pivotal-tracker-api/zipball/37b5489fdc13f33578d1f79a5870d9d276f7cc87",
+                "reference": "37b5489fdc13f33578d1f79a5870d9d276f7cc87",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,7 @@
             "support": {
                 "source": "https://github.com/angmarian/pivotal-tracker-api/tree/master"
             },
-            "time": "2015-06-16 08:26:04"
+            "time": "2015-06-30 13:23:11"
         },
         {
             "name": "angmarian/youtrack-client",
@@ -309,12 +309,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "2f5f776587d59b4808d29a25fffd84e37033e687"
+                "reference": "d7246885b7fe4cb5a2786bda34362d2f0e40b730"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/2f5f776587d59b4808d29a25fffd84e37033e687",
-                "reference": "2f5f776587d59b4808d29a25fffd84e37033e687",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/d7246885b7fe4cb5a2786bda34362d2f0e40b730",
+                "reference": "d7246885b7fe4cb5a2786bda34362d2f0e40b730",
                 "shasum": ""
             },
             "require": {
@@ -359,7 +359,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2015-06-19 15:09:14"
+            "time": "2015-06-24 15:32:32"
         }
     ],
     "packages-dev": [
@@ -524,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "5a355f91730c845301a9e28f91c8a5053353c496"
+                "reference": "5700f75b23b0dd3495c0f495fe33a5e6717ee160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/5a355f91730c845301a9e28f91c8a5053353c496",
-                "reference": "5a355f91730c845301a9e28f91c8a5053353c496",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/5700f75b23b0dd3495c0f495fe33a5e6717ee160",
+                "reference": "5700f75b23b0dd3495c0f495fe33a5e6717ee160",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +576,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2015-05-20 16:00:43"
+            "time": "2015-06-30 10:26:46"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -820,16 +820,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.7.5",
+            "version": "4.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f6701ef3faea759acd1910a7751d8d102a7fd5bc"
+                "reference": "0ebabb4cda7d066be8391dfdbaf57fe70ac9a99b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f6701ef3faea759acd1910a7751d8d102a7fd5bc",
-                "reference": "f6701ef3faea759acd1910a7751d8d102a7fd5bc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0ebabb4cda7d066be8391dfdbaf57fe70ac9a99b",
+                "reference": "0ebabb4cda7d066be8391dfdbaf57fe70ac9a99b",
                 "shasum": ""
             },
             "require": {
@@ -888,7 +888,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-06-21 07:23:36"
+            "time": "2015-06-30 06:53:57"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
